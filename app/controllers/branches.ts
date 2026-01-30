@@ -1,9 +1,9 @@
-import type { HttpContext } from '@adonisjs/core/http'
-import { BranchRepository } from '../repositories/branch_repository.js'
-import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
-import Branch, { BranchValidatorMessages, BranchValidators } from '#models/dto/branch'
-import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 import { AgencyValidatorMessages, AgencyValidators } from '#models/dto/agency'
+import Branch, { BranchValidatorMessages, BranchValidators } from '#models/dto/branch'
+import type { HttpContext } from '@adonisjs/core/http'
+import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
+import vine, { SimpleMessagesProvider } from '@vinejs/vine'
+import { BranchRepository } from '../repositories/branch_repository.js'
 
 export default class BranchesController {
   @ApiOperation({ summary: 'List branches by agency' })

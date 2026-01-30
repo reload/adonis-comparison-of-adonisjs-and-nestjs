@@ -1,4 +1,4 @@
-import { BranchFbs } from '../../types/data/fbs/branch.js'
+import type { BranchFbs } from '../../types/data/fbs/branch.js'
 
 export default class Branch {
   constructor(

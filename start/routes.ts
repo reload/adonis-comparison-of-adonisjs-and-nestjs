@@ -10,7 +10,8 @@
 import router from '@adonisjs/core/services/router'
 
 const AgenciesController = () => import('#controllers/agencies_controller')
-router.resource('agencies', AgenciesController)
+router.resource('agencies', AgenciesController).only(['index', 'show'])
 
 const BranchesController = () => import('#controllers/branches_controller')
-router.resource('agencies.branches', BranchesController)
+router.resource('branches', BranchesController).only(['show'])
+router.resource('agencies.branches', BranchesController).only(['index', 'show'])

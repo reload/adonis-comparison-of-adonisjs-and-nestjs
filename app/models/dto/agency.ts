@@ -1,6 +1,7 @@
 import { ApiProperty } from '@foadonis/openapi/decorators'
 import type { AgencyFbs } from '../../types/data/fbs/agency.js'
 import vine from '@vinejs/vine'
+import type { Infer } from '@vinejs/vine/types'
 
 export default class Agency {
   @ApiProperty()
@@ -17,11 +18,13 @@ export default class Agency {
   }
 }
 
-export const AgencyValidators = {
+export const AgencySchemaRules = {
   id: vine.string().regex(/^\d+$/),
   name: vine.string(),
 }
-
 export const AgencyValidatorMessages = {
   id: 'Invalid id format. Format should be a number',
 }
+
+export const AgencySchema = vine.object(AgencySchemaRules)
+export type AgencyBff = Infer<typeof AgencySchema>

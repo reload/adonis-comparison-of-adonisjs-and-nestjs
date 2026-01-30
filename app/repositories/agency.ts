@@ -1,6 +1,5 @@
-import Agency from '#models/dto/agency'
+import Agency, { AgencyBff } from '#models/dto/agency'
 import { agencies } from '../mocks/agencies.js'
-import type { AgencyBff } from '../types/data/bff/agency.js'
 
 export interface AgencyRepositoryInterface {
   getAll(): Promise<Agency[]>

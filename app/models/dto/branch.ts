@@ -1,6 +1,7 @@
 import { ApiProperty } from '@foadonis/openapi/decorators'
 import type { BranchFbs } from '../../types/data/fbs/branch.js'
 import vine from '@vinejs/vine'
+import { Infer } from '@vinejs/vine/types'
 
 export default class Branch {
   // Format: [LANGCODE]-[NUMBER]. Eg.: DK-35534.
@@ -34,7 +35,7 @@ export default class Branch {
   }
 }
 
-export const BranchValidators = {
+export const BranchSchemaRules = {
   id: vine.string().regex(/^\d+$/),
   name: vine.string(),
   organisation: vine.string(),
@@ -44,5 +45,8 @@ export const BranchValidators = {
 }
 
 export const BranchValidatorMessages = {
-  id: 'Invalid id format. Should be a number.',
+  id: 'Invalid id format. Format should be a number',
 }
+
+export const BranchSchema = vine.object(BranchSchemaRules)
+export type BranchBff = Infer<typeof BranchSchema>

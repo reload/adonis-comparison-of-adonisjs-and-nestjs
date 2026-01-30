@@ -1,6 +1,6 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
-import Agency, { AgencyValidatorMessages, AgencyValidators } from '#models/dto/agency'
+import Agency, { AgencySchemaRules, AgencyValidatorMessages } from '#models/dto/agency'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 import { AgencyRepository } from '../repositories/agency.js'
 
@@ -25,7 +25,7 @@ export default class AgenciesController {
     const validator = vine.compile(
       vine.object({
         params: vine.object({
-          id: AgencyValidators.id,
+          id: AgencySchemaRules.id,
         }),
       })
     )

@@ -1,7 +1,6 @@
-import Branch from '#models/dto/branch'
+import { AgencyBff } from '#models/dto/agency'
+import Branch, { BranchBff } from '#models/dto/branch'
 import { cphBranches } from '../mocks/cph_branches.js'
-import type { AgencyBff } from '../types/data/bff/agency.js'
-import type { BranchBff } from '../types/data/bff/branch.js'
 
 export interface BranchRepositoryInterface {
   getBranch(id: BranchBff['id']): Promise<BranchBff | null>

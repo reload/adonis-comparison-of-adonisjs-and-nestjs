@@ -1,5 +1,5 @@
-import { AgencyValidatorMessages, AgencyValidators } from '#models/dto/agency'
-import Branch, { BranchValidatorMessages, BranchValidators } from '#models/dto/branch'
+import { AgencySchemaRules, AgencyValidatorMessages } from '#models/dto/agency'
+import Branch, { BranchSchemaRules, BranchValidatorMessages } from '#models/dto/branch'
 import type { HttpContext } from '@adonisjs/core/http'
 import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
@@ -19,7 +19,7 @@ export default class BranchesController {
     const validator = vine.compile(
       vine.object({
         params: vine.object({
-          agency_id: AgencyValidators.id,
+          agency_id: AgencySchemaRules.id,
         }),
       })
     )
@@ -46,7 +46,7 @@ export default class BranchesController {
     const validator = vine.compile(
       vine.object({
         params: vine.object({
-          id: BranchValidators.id,
+          id: BranchSchemaRules.id,
         }),
       })
     )

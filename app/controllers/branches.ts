@@ -3,7 +3,7 @@ import Branch, { BranchValidatorMessages, BranchValidators } from '#models/dto/b
 import type { HttpContext } from '@adonisjs/core/http'
 import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
-import { BranchRepository } from '../repositories/branch_repository.js'
+import { BranchRepository } from '../repositories/branch.js'
 
 export default class BranchesController {
   @ApiOperation({ summary: 'List branches by agency' })

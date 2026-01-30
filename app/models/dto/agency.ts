@@ -1,6 +1,6 @@
 import { ApiProperty } from '@foadonis/openapi/decorators'
 import type { AgencyFbs } from '../../types/data/fbs/agency.js'
-import vine, { SimpleMessagesProvider } from '@vinejs/vine'
+import vine from '@vinejs/vine'
 
 export default class Agency {
   @ApiProperty()

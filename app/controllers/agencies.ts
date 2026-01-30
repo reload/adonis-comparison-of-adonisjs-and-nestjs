@@ -1,8 +1,8 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { AgencyRepository } from '../repositories/agency_repository.js'
 import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
 import Agency, { AgencyValidatorMessages, AgencyValidators } from '#models/dto/agency'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
+import { AgencyRepository } from '../repositories/agency.js'
 
 export default class AgenciesController {
   @ApiOperation({ summary: 'List all agencies' })

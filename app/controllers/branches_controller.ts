@@ -1,19 +1,63 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import { BranchRepository } from '../repositories/branch_repository.js'
+import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
+import Branch, { BranchValidatorMessages, BranchValidators } from '#models/dto/branch'
+import vine, { SimpleMessagesProvider } from '@vinejs/vine'
+import { AgencyValidatorMessages, AgencyValidators } from '#models/dto/agency'
 
 export default class BranchesController {
-  /**
-   * Display a list of resource
-   */
-  async index({ params: { agency_id } }: HttpContext) {
-    if (!agency_id) {
-      throw new Error('Agency ID is required')
-    }
+  @ApiOperation({ summary: 'List branches by agency' })
+  @ApiParam({
+    name: 'agency_id',
+    description: 'Agency id',
+    required: true,
+    type: 'string',
+    example: '710100',
+  })
+  @ApiResponse({ type: [Branch], description: 'An array of all branches tied to given agency' })
+  async index({ request, params: { agency_id } }: HttpContext) {
+    const validator = vine.compile(
+      vine.object({
+        params: vine.object({
+          agency_id: AgencyValidators.id,
+        }),
+      })
+    )
+    await request.validateUsing(validator, {
+      messagesProvider: new SimpleMessagesProvider({
+        'params.agency_id.regex': AgencyValidatorMessages.id,
+      }),
+    })
+
     const branchRepository = new BranchRepository()
     return await branchRepository.getBranchesByAgencyId(agency_id)
   }
 
-  async show({ params: { id } }: HttpContext) {
+  @ApiOperation({ summary: 'Show one branch', description: 'Show one branch by id' })
+  @ApiParam({
+    name: 'id',
+    description: 'Branch id',
+    required: true,
+    type: 'string',
+    example: '710100',
+  })
+  @ApiResponse({ type: Branch })
+  async show({ request, params: { id } }: HttpContext) {
+    const validator = vine.compile(
+      vine.object({
+        params: vine.object({
+          id: BranchValidators.id,
+        }),
+      })
+    )
+    await request.validateUsing(validator, {
+      messagesProvider: new SimpleMessagesProvider({
+        'params.id.regex': BranchValidatorMessages.id,
+      }),
+    })
+
+    await request.validateUsing(validator)
+
     const branchRepository = new BranchRepository()
     return await branchRepository.getBranch(id)
   }

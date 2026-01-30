@@ -1,10 +1,10 @@
 import Agency from '#models/dto/agency'
 import { agencies } from '../mocks/agencies.js'
-import { AgencyFFE } from '../types/agency_ffe.js'
+import type { AgencyBff } from '../types/data/bff/agency.js'
 
 export interface AgencyRepositoryInterface {
   getAll(): Promise<Agency[]>
-  getOne(id: AgencyFFE['id']): Promise<Agency>
+  getOne(id: AgencyBff['id']): Promise<Agency>
 }
 
 export class AgencyRepository implements AgencyRepositoryInterface {

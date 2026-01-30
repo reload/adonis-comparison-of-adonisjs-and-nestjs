@@ -1,4 +1,4 @@
-import type { FbsAgency } from '../../types/fbs.js'
+import type { AgencyFbs } from '../../types/data/fbs/agency.js'
 
 export default class Agency {
   constructor(
@@ -6,7 +6,7 @@ export default class Agency {
     public name: string
   ) {}
 
-  static fromRequest({ id, navn }: FbsAgency): Agency {
+  static fromRequest({ id, navn }: AgencyFbs): Agency {
     return new Agency(id, navn)
   }
 }

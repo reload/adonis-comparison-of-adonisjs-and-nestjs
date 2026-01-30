@@ -1,4 +1,4 @@
-export type BranchFFE = {
+export type BranchBff = {
   id: string
   name: string
   organisation: string

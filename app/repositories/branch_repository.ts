@@ -1,14 +1,14 @@
 import Branch from '#models/dto/branch'
 import { cphBranches } from '../mocks/cph_branches.js'
-import type { AgencyFFE } from '../types/agency_ffe.js'
-import type { BranchFFE } from '../types/branch_ffe.js'
+import type { AgencyBff } from '../types/data/bff/agency.js'
+import type { BranchBff } from '../types/data/bff/branch.js'
 
 export interface BranchRepositoryInterface {
-  getBranchesByAgencyId(id: AgencyFFE['id']): Promise<BranchFFE[]>
+  getBranchesByAgencyId(id: AgencyBff['id']): Promise<BranchBff[]>
 }
 
 export class BranchRepository implements BranchRepositoryInterface {
-  async getBranchesByAgencyId(id: AgencyFFE['id']): Promise<BranchFFE[]> {
+  async getBranchesByAgencyId(id: AgencyBff['id']): Promise<BranchBff[]> {
     return Promise.resolve(cphBranches.map((branch) => Branch.fromRequest(branch)))
   }
 }

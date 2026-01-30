@@ -1,4 +1,4 @@
-export type AgencyFFE = {
+export type AgencyBff = {
   id: string
   name: string
 }

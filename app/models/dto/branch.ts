@@ -1,4 +1,4 @@
-import type { FbsAgency, FbsBranch } from '../../types/fbs.js'
+import { BranchFbs } from '../../types/data/fbs/branch.js'
 
 export default class Branch {
   constructor(
@@ -11,7 +11,7 @@ export default class Branch {
     public city: string
   ) {}
 
-  static fromRequest({ id, navn, organisation, adresse, postnr, by }: FbsBranch): Branch {
+  static fromRequest({ id, navn, organisation, adresse, postnr, by }: BranchFbs): Branch {
     return new Branch(id, navn, organisation, adresse, postnr, by)
   }
 }

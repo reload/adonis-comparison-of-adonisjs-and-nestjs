@@ -56,5 +56,7 @@ Run application:
 ```
  pnpm run dev
 ```
+The routes are guarded. You need a: "Authorization: bearer john" header to be authorized to request. 
 
-NOTE!: branches returned are always the one from Copenhagen
+NOTE!: branches returned are always the ones from Copenhagen
+

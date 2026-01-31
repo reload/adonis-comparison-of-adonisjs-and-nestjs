@@ -1,10 +1,11 @@
 import { AgencySchemaRules, AgencyValidatorMessages } from '#models/dto/agency'
 import Branch, { BranchSchemaRules, BranchValidatorMessages } from '#models/dto/branch'
 import type { HttpContext } from '@adonisjs/core/http'
-import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
+import { ApiBearerAuth, ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 import { BranchRepository } from '../repositories/branch.js'
 
+@ApiBearerAuth()
 export default class BranchesController {
   @ApiOperation({ summary: 'List branches by agency' })
   @ApiParam({
@@ -55,8 +56,6 @@ export default class BranchesController {
         'params.id.regex': BranchValidatorMessages.id,
       }),
     })
-
-    await request.validateUsing(validator)
 
     const branchRepository = new BranchRepository()
     return await branchRepository.getBranch(id)

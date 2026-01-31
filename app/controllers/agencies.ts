@@ -1,9 +1,10 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import { ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
+import { ApiBearerAuth, ApiOperation, ApiParam, ApiResponse } from '@foadonis/openapi/decorators'
 import Agency, { AgencySchemaRules, AgencyValidatorMessages } from '#models/dto/agency'
 import vine, { SimpleMessagesProvider } from '@vinejs/vine'
 import { AgencyRepository } from '../repositories/agency.js'
 
+@ApiBearerAuth()
 export default class AgenciesController {
   @ApiOperation({ summary: 'List all agencies' })
   @ApiResponse({ type: [Agency], description: 'An array of all agencies' })

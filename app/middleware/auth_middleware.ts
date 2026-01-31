@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
 import type { Authenticators } from '@adonisjs/auth/types'
+import { Exception } from '@adonisjs/core/exceptions'
 
 /**
  * Auth middleware is used authenticate HTTP requests and deny
@@ -19,7 +20,14 @@ export default class AuthMiddleware {
       guards?: (keyof Authenticators)[]
     } = {}
   ) {
-    await ctx.auth.authenticateUsing(options.guards, { loginRoute: this.redirectTo })
-    return next()
+    const authHeader = ctx.request.headers()['authorization']
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.split(' ')[1]
+      if (token === 'john') {
+        return next()
+      }
+    }
+
+    throw new Exception('Access denied', { status: 403, code: 'E_ACCESS_DENIED' })
   }
 }

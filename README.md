@@ -33,6 +33,7 @@ The POC makes use of following aspects:
 - Routing via resource definitions in start/routes.ts
 - Use of data repositories (in order to abstract away the data sources)
 - JSON middleware that enforces JSON response format
+- Openapi spec endpoint through a service provider
 
 ## How do I test the current state of the application?
 
